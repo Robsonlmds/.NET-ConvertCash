@@ -15,7 +15,7 @@ namespace ConvertCash.Models
         public ConversionRate conversion_rates { get; set; }
     }
 
-    public class ConversionRate
+    public class ConversionRate //Arrumar as PROPS que nao tem
     {
         public double AED { get; set; }
         public double ARS { get; set; }

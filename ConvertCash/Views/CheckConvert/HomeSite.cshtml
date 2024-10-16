@@ -6,54 +6,61 @@
     var baseCurrency = ViewBag.BaseCurrency as string;
     var targetCurrency = ViewBag.TargetCurrency as string;
     var conversionRate = ViewBag.ConversionRate as double?;
-    var ValueForConverte = ViewBag.ValueForConverter as string;
+    var valueForConverte = ViewBag.ValueForConverter as string;
     var showValue = ViewBag.showValue as string;
 
-    @if (ValueForConverte.Length >= 6)
-    {
-        <p> @ValueForConverte.Substring(0, 6) </p>
-    }
 
     var error = ViewBag.Error as string;
+
+
 }
 
 <html lang="pt-br">
   
     <div class="text-center">
+
         <h1 class="display-4">ConvertCash</h1>
+
     </div>
 
-    <div class="text-center m-5">
+
+    <div class="text-center mt-5">
 
         <form method="post" class="row g-2">
 
             <div class="col-4">
-                <input type="text" class="form-control" name="baseCurrency" placeholder="Moeda base (Ex: USD)" maxlength="3" required/>
+                <input type="text" class="form-control" name="tempBaseCurrency" placeholder="Moeda base (Ex: USD)" maxlength="3" required />
             </div>
             <div class="col-4">
-                <input type="text" class="form-control" name="targetCurrency" placeholder="Moeda destino (Ex: BRL)" maxlength="3" required/>
+                <input type="text" class="form-control" name="tempTargetCurrency" placeholder="Moeda destino (Ex: BRL)" maxlength="3" required />
             </div>
             <div class="col-4">
-                <input type="number" class="form-control" name="valueForConverter" placeholder="Valor a ser convertido (Ex: 1,00)" maxlength="10" required/>
+                <input type="number" class="form-control" name="tempValueForConverte" placeholder="Valor para converter (Ex: 1,00)" required @* maxlength="8" *@ />
             </div>
 
-            <div class="text-center">
-                <button class="btn btn-outline-dark btn-block" type="submit">Converter</button>
+            <div class="mt-lg-5">
+                <button class="btn btn-outline-dark" type="submit">Converter</button>
             </div>
 
         </form>
 
     </div>
 
+
     @if (allcontent != null && conversionRate != null)
     {
         <div class="text-center mt-5">
             <h3>Taxa de Conversão</h3>
+
             <p>Base: @baseCurrency</p>
-            <p>Destino: @targetCurrency</p>
+            <p>Destino: @targetCurrency</p> 
+            <p>Taxa: @conversionRate</p>
 
-            <p> </p>
+            <p>@showValue</p>
+        </div>
 
+        <div class="text-center mt-5">
+            <a href="/" action="@Url.Action("Index","CheckConvert")" class="btn btn-outline-success">Nova Conversão</a>
         </div>
     }
     else if (!string.IsNullOrEmpty(error))
@@ -62,6 +69,7 @@
             <p class="text-danger">@error</p>
         </div>
     }
+
 
 
 @* ///////////////////////////////////// - MODALS - ///////////////////////////////////// *@
