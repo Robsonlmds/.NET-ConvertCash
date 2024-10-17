@@ -28,8 +28,14 @@ namespace ConvertCash.Controllers
 
 
         [HttpPost]
-        public IActionResult Index(string baseCurrency, string targetCurrency, double valueForConverter)
+        public IActionResult Index(string tempBaseCurrency, string tempTargetCurrency, double tempValueForConverte)
         {
+
+            ViewBag.tempValueForConverte = tempValueForConverte.ToString();
+
+            string baseCurrency = tempBaseCurrency.ToUpper();
+            string targetCurrency = tempTargetCurrency.ToUpper();
+
             var requestWeb = WebRequest.CreateHttp(baseAddress + baseCurrency);
             requestWeb.Method = "GET";
             requestWeb.UserAgent = "RequestWebDemo";
@@ -48,16 +54,25 @@ namespace ConvertCash.Controllers
                 }
             }
 
-            if (allcontent.conversion_rates != null && allcontent.conversion_rates.GetType().GetProperty(targetCurrency.ToUpper()) != null)
+            if (allcontent.conversion_rates != null && allcontent.conversion_rates.GetType().GetProperty(targetCurrency) != null)
             {
-                var targetRate = (double)allcontent.conversion_rates.GetType().GetProperty(targetCurrency.ToUpper()).GetValue(allcontent.conversion_rates);
+                var targetRate = (double)allcontent.conversion_rates.GetType().GetProperty(targetCurrency).GetValue(allcontent.conversion_rates);
+
                 ViewBag.ConversionRate = targetRate;
-                ViewBag.TargetCurrency = targetCurrency.ToUpper();
+                ViewBag.TargetCurrency = targetCurrency;
 
-                double valueFinal = valueForConverter * targetRate;
-                ViewBag.ValueForConverter = valueFinal.ToString();
+                tempValueForConverte = tempValueForConverte * targetRate;
 
-                ViewBag.showValue = valueFinal;
+                string valueForConverte = tempValueForConverte.ToString();
+
+                if (valueForConverte.Length >= 7)
+                {
+                    valueForConverte = valueForConverte.Substring(0, 7);   
+                }
+
+                ViewBag.valueForConverte = valueForConverte;
+
+                ViewBag.showValue = "Valor Convertido: " + valueForConverte + " " + targetCurrency;
 
             }
             else
@@ -66,7 +81,7 @@ namespace ConvertCash.Controllers
                 ViewBag.Error = "Moeda de destino não encontrada.";
             }
 
-            ViewBag.BaseCurrency = baseCurrency.ToUpper();
+            ViewBag.BaseCurrency = baseCurrency;
             ViewBag.ConversionRates = allcontent;
 
             return View("HomeSite");

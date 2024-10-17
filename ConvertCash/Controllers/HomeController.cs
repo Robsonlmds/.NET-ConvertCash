@@ -18,7 +18,7 @@ namespace ConvertCash.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult ReadMe()
         {
             return View();
         }

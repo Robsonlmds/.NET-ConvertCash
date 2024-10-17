@@ -6,12 +6,11 @@
     var baseCurrency = ViewBag.BaseCurrency as string;
     var targetCurrency = ViewBag.TargetCurrency as string;
     var conversionRate = ViewBag.ConversionRate as double?;
-    var valueForConverte = ViewBag.ValueForConverter as string;
+    var valueForConverte = ViewBag.valueForConverte as string;
+    var tempValueForConverte = ViewBag.tempValueForConverte as string;
     var showValue = ViewBag.showValue as string;
 
-
     var error = ViewBag.Error as string;
-
 
 }
 
@@ -22,7 +21,6 @@
         <h1 class="display-4">ConvertCash</h1>
 
     </div>
-
 
     <div class="text-center mt-5">
 
@@ -35,7 +33,7 @@
                 <input type="text" class="form-control" name="tempTargetCurrency" placeholder="Moeda destino (Ex: BRL)" maxlength="3" required />
             </div>
             <div class="col-4">
-                <input type="number" class="form-control" name="tempValueForConverte" placeholder="Valor para converter (Ex: 1,00)" required @* maxlength="8" *@ />
+                <input id="inputValue" type="number" class="form-control" name="tempValueForConverte" placeholder="Valor para converter (Ex: 1,00)" required @* maxlength="8" *@ />
             </div>
 
             <div class="mt-lg-5">
@@ -50,16 +48,18 @@
     @if (allcontent != null && conversionRate != null)
     {
         <div class="text-center mt-5">
-            <h3>Taxa de Conversão</h3>
+            <h3>Resultado de Conversão</h3>
 
             <p>Base: @baseCurrency</p>
-            <p>Destino: @targetCurrency</p> 
+            <p>Destino: @targetCurrency</p>
             <p>Taxa: @conversionRate</p>
 
-            <p>@showValue</p>
+            <p style="font-size:x-large"> <strong> @showValue </strong> </p>
         </div>
 
         <div class="text-center mt-5">
+            <button id="btnShowModal" class="btn btn-outline-dark" type="button" onclick="copybutton()" data-bs-toggle="modal" data-bs-target="#copyModal"> Copiar Conversão </button>
+
             <a href="/" action="@Url.Action("Index","CheckConvert")" class="btn btn-outline-success">Nova Conversão</a>
         </div>
     }
@@ -71,56 +71,29 @@
     }
 
 
-
-@* ///////////////////////////////////// - MODALS - ///////////////////////////////////// *@
-
-@* <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="TitleModalLabel"> Enviar o endereço para seu Email </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body">
-                <form method="post" action="@Url.Action("Index","Email")">
-
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label"> Seu nome: </label>
-                        <input type="text" class="form-control" id="recipient-name" name="name" placeholder="Nome Sobrenome" />
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label"> Email: </label>
-                        <input type="email" class="form-control" id="message-text" name="email" placeholder="email@mail.com" />
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Fechar </button>
-                        <button type="submit" class="btn btn-outline-dark"> FINALIZAR e Enviar Email</button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
+    <div>
+    @{var allText = tempValueForConverte + " " + baseCurrency + " = " + valueForConverte + " " + targetCurrency;}
+        <input id="inputDNone" type="text" class="d-none" name="inputHide" value="@allText"/>
     </div>
-</div>
+
+
+@*  ///////////////////////////////////// - INICIO - MODALS - ///////////////////////////////////// *@
 
 <div class="modal fade" id="copyModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true" style="color: blue">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="modal-body text-center">
-                <strong> Endereço copiado com sucesso! </strong>
+                <strong> Resultado copiado com sucesso! </strong>
             </div>
 
         </div>
     </div>
-</div> *@
+</div> 
 
-@* ///////////////////////////////////// - FIM - MODALS - ///////////////////////////////////// *@
+@*  ///////////////////////////////////// - FIM - MODALS - ///////////////////////////////////// *@
 
-@* 
+
 @section Scripts {
 
     <script>
@@ -147,14 +120,14 @@
 
 
         $(document).ready(function () {
-            $("#myInput").keyup(function () {
-                $("#myInput").val(this.value.match(/[0-9]*/));
+            $("#inputValue").keyup(function () {
+                $("#inputValue").val(this.value.match(/[0-9]*/));
             });
         });
 
 
     </script>
 
-} *@
+}
 
 </html>

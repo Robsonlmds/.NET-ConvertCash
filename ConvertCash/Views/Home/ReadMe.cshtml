@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "ReadMe";
+}
+
+<a href="https://git.io/typing-svg" class="text-center">
+    <img src="https://readme-typing-svg.demolab.com?font=Silkscreen&size=20&duration=1500&pause=1000&=true&multiline=true&repeat=false&random=false&width=700&height=110&lines=Convert+Cash"
+         alt="Typing SVG" />
+</a>
+
+<h2>Descrição</h2>
+<p>
+    O ConvertCash é uma aplicação ASP.NET MVC que converte valores de uma moeda base para uma moeda alvo utilizando uma API de taxas de câmbio. Ele busca as taxas de conversão mais recentes de uma API externa e permite ao usuário inserir uma moeda base, uma moeda alvo e um valor a ser convertido.
+</p>
+
+<h2>Funcionalidades</h2>
+<ul>
+    <li>Busca automática de taxas de câmbio em tempo real através da API ExchangeRate API.</li>
+    <li>Conversão de valores entre diferentes moedas.</li>
+    <li>Verificação de erros ao procurar moedas não encontradas.</li>
+    <li>Exibição da taxa de conversão e do valor convertido no front-end.</li>
+</ul>
+
+<h2>Estrutura do Projeto</h2>
+<p>
+    O controlador principal utilizado para gerenciar a conversão de moedas é o <code>CheckConvertController</code>. Ele se conecta à API de taxas de câmbio e processa a conversão com base nos valores inseridos pelo usuário.
+</p>
+
+<h3>Controlador: <code>CheckConvertController</code></h3>
+<ul>
+    <li><strong>Index (GET)</strong>: Renderiza a página inicial da aplicação (HomeSite).</li>
+    <li><strong>Index (POST)</strong>: Recebe as entradas do usuário para as moedas base e alvo, bem como o valor a ser convertido. Através de uma solicitação à API de taxas de câmbio, calcula o valor convertido e exibe os resultados para o usuário.</li>
+</ul>
+
+<h2>Fluxo de Funcionamento</h2>
+<ol>
+    <li>O usuário acessa a página inicial da aplicação.</li>
+    <li>O usuário insere a moeda base, a moeda alvo e o valor a ser convertido.</li>
+    <li>O <code>CheckConvertController</code> faz uma solicitação à API de câmbio para obter as taxas de conversão mais recentes.</li>
+    <li>O valor é convertido e o resultado é exibido na página.</li>
+</ol>
+
+<h2>Tecnologias Utilizadas</h2>
+<ul>
+    <li><strong>ASP.NET Core MVC</strong>: Estrutura principal para o desenvolvimento do projeto.</li>
+    <li><strong>C#</strong>: Linguagem de programação utilizada.</li>
+    <li><strong>ExchangeRate API</strong>: API externa usada para buscar as taxas de câmbio.</li>
+    <li><strong>Newtonsoft.Json</strong>: Biblioteca utilizada para desserializar os dados JSON da API.</li>
+</ul>
+
+<footer>
+    <h1 align="center">
+        <img src="https://readme-typing-svg.herokuapp.com/?font=Silkscreen&size=35&center=true&vCenter=true&width=700&height=70&duration=5000&lines=Obrigado+pela+atenção!;" />
+    </h1>
+</footer>
+
