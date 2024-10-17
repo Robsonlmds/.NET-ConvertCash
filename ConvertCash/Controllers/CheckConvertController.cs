@@ -87,10 +87,6 @@ namespace ConvertCash.Controllers
             return View("HomeSite");
         }
 
-
-
-
-
     }
 }
 
