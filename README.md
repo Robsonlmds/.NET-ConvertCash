@@ -3,6 +3,9 @@
          alt="Typing SVG" />
 </a>
 
+<h1 align="center">
+  <img alt="videoSite" title="videoSite" src="ConvertCash/assets/video-convertcheck.gif"/>
+</h1>
 
 ## Descrição
 O ConvertCash é uma aplicação ASP.NET MVC que converte valores de uma moeda base para uma moeda alvo utilizando uma API de taxas de câmbio. Ele busca as taxas de conversão mais recentes de uma API externa e permite ao usuário inserir uma moeda base, uma moeda alvo e um valor a ser convertido.
