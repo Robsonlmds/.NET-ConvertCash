@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "ConvertCash";
+    var cc = ViewBag.cep as ConvertCash;
+
+}
+
+<html lang="pt-br">
+
+<div class="text-center">
+    <h1 class="display-4">ConvertCash</h1>
+</div>
+
+<div class="text-center mt-5">
+    <form method="post" class="row g-2">
+
+        <div class="col-11">
+            <input type="text" class="form-control" name="Conversion_rates" placeholder="Ex: USD, BRL, CLP" id="myInput" maxlength="3" />
+        </div>
+
+        <div class="col-1">
+            <button class="btn btn-outline-dark" type="submit">Check</button>
+        </div>
+
+    </form>
+</div>
+
+@if(cc != null)
+{
+    <div class="text-center mt-5" id="allcontent">
+
+        <p>CEP: @cc.Conversion_rates</p>
+        
+    </div>
+}
+
+@* ///////////////////////////////////// - MODALS - ///////////////////////////////////// *@
+
+@* <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TitleModalLabel"> Enviar o endereço para seu Email </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form method="post" action="@Url.Action("Index","Email")">
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label"> Seu nome: </label>
+                        <input type="text" class="form-control" id="recipient-name" name="name" placeholder="Nome Sobrenome" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label"> Email: </label>
+                        <input type="email" class="form-control" id="message-text" name="email" placeholder="email@mail.com" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Fechar </button>
+                        <button type="submit" class="btn btn-outline-dark"> FINALIZAR e Enviar Email</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="copyModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true" style="color: blue">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body text-center">
+                <strong> Endereço copiado com sucesso! </strong>
+            </div>
+
+        </div>
+    </div>
+</div> *@
+
+@* ///////////////////////////////////// - FIM - MODALS - ///////////////////////////////////// *@
+
+@* 
+@section Scripts {
+
+    <script>
+
+        function copybutton() {
+            let copyAll = document.getElementById("inputDNone");
+
+            copyAll.select();
+
+            navigator.clipboard.writeText(copyAll.value);
+            document.execCommand("copy");
+        }
+
+
+        $(function () {
+            $('#copyModal').on('show.bs.modal', function () {
+                var myCopyModal = $(this);
+                clearTimeout(myCopyModal.data('hideInterval'));
+                myCopyModal.data('hideInterval', setTimeout(function () {
+                    myCopyModal.modal('hide');
+                }, 3000));
+            });
+        });
+
+
+        $(document).ready(function () {
+            $("#myInput").keyup(function () {
+                $("#myInput").val(this.value.match(/[0-9]*/));
+            });
+        });
+
+
+    </script>
+
+} *@
+
+</html>
