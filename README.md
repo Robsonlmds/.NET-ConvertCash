@@ -1,7 +1,7 @@
- <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Silkscreen&size=20&duration=1500&pause=1000&center=true&vCenter=true&multiline=true&repeat=false&random=false&width=700&height=110&lines=Convert+Cash" 
-    alt="Typing SVG" />
-  </a>
+<a href="https://git.io/typing-svg" class="text-center">
+    <img src="https://readme-typing-svg.demolab.com?font=Silkscreen&size=20&duration=1500&pause=1000&=true&multiline=true&repeat=false&random=false&width=700&height=110&lines=Convert+Cash"
+         alt="Typing SVG" />
+</a>
 
 
 ## Descrição
@@ -32,3 +32,7 @@ O controlador principal utilizado para gerenciar a conversão de moedas é o `Ch
 - **ExchangeRate API**: API externa usada para buscar as taxas de câmbio.
 - **Newtonsoft.Json**: Biblioteca utilizada para desserializar os dados JSON da API.
 
+  
+<h1 align="center">
+<img src="https://readme-typing-svg.herokuapp.com/?font=Silkscreen&size=35&center=true&vCenter=true&width=700&height=70&duration=5000&lines=Obrigado+pela+atenção!;" />
+</h1>
